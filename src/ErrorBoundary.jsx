@@ -1,5 +1,15 @@
 // src/ErrorBoundary.jsx
 import React, { Component } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+
+// Helper component to trigger navigation from the ErrorBoundary
+function RedirectToError() {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    navigate("/error"); // Redirect to the error page
+  }, [navigate]);
+  return null;
+}
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -8,21 +18,19 @@ class ErrorBoundary extends Component {
   }
 
   static getDerivedStateFromError(error) {
+    // Update state to trigger the redirect
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error("Error caught by ErrorBoundary:", error, errorInfo);
-
-    // Redirect to 404.html immediately
-    window.location.href = "/404.html";
+    // You can log error information here if needed
+    console.error("Error caught in ErrorBoundary:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return null; // This will not render anything after the redirect
+      return <RedirectToError />;
     }
-
     return this.props.children;
   }
 }

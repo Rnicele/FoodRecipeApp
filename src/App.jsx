@@ -1,19 +1,23 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import Recipes from "./components/Recipes";
 import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   const [foodData, setFoodData] = useState([]);
   const [foodId, setFoodId] = useState("716300");
   return (
-    <ErrorBoundary>
-      <div className="App">
-        <Header foodData={foodData} setFoodData={setFoodData} />
-        <Recipes foodData={foodData} setFoodId={setFoodId} foodId={foodId} />
-      </div>
-    </ErrorBoundary>
+    <Router>
+      <ErrorBoundary>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* Define other routes as needed */}
+            <Route path="*" element={<ErrorPage />} />
+            {/* Fallback for unknown routes */}
+          </Routes>
+        </div>
+      </ErrorBoundary>
+    </Router>
   );
 }
 
