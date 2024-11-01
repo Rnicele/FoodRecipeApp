@@ -1,21 +1,39 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/search.module.css";
-import searchIcon from "../assets/Search.png";
 const URL = "https://api.spoonacular.com/recipes/complexSearch";
 const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
+
 export default function Search({ forPage, foodData, setFoodData }) {
   const [query, setQuery] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchFood() {
       // wait till get the response; we need to use async function when we use await
       const res = await fetch(`${URL}?query=${query}&apiKey=${apiKey}`);
-      const data = await res.json();
-      setFoodData(data.results);
+      if (!res.ok) {
+        // If the response status is not OK, set error state
+        setHasError(true);
+      } else {
+        const data = await res.json();
+        setFoodData(data.results);
+      }
     }
     fetchFood();
   }, [query]);
-  // const position = forPage === "body" ? styles.searchBody : styles.searchHeader;
+
+  useEffect(() => {
+    // Redirect to /error if hasError is true
+    if (hasError) {
+      navigate("/error");
+    }
+  }, [hasError, navigate]);
+
+  if (hasError) {
+    return null; // Prevent rendering if navigating to error page
+  }
   return (
     <div className={styles.searchHeader}>
       <input
