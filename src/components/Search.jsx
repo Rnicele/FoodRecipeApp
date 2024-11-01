@@ -16,6 +16,7 @@ export default function Search({ forPage, foodData, setFoodData }) {
       if (!res.ok) {
         // If the response status is not OK, set error state
         setHasError(true);
+        console.log(hasError);
       } else {
         const data = await res.json();
         setFoodData(data.results);
@@ -27,7 +28,7 @@ export default function Search({ forPage, foodData, setFoodData }) {
   useEffect(() => {
     // Redirect to /error if hasError is true
     if (hasError) {
-      navigate("/error");
+      navigate("/FoodRecipeApp/error");
     }
   }, [hasError, navigate]);
 
