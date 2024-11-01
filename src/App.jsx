@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ErrorBoundary from "./ErrorBoundary";
+import Home from "./Home";
+import ErrorPage from "./ErrorPage";
 
 function App() {
   return (
