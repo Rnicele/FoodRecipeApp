@@ -1,19 +1,16 @@
 import { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import ErrorPage from "./ErrorPage";
+import Header from "./components/Header";
+import Recipes from "./components/Recipes";
 
 function App() {
+  const [foodData, setFoodData] = useState([]);
+  const [foodId, setFoodId] = useState("716300");
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/error" element={<ErrorPage />} />
-        <Route path="*" element={<ErrorPage />} />
-        {/* Fallback for unknown routes */}
-      </Routes>
-    </Router>
+    <div className="App">
+      <Header foodData={foodData} setFoodData={setFoodData} />
+      <Recipes foodData={foodData} setFoodId={setFoodId} foodId={foodId} />
+    </div>
   );
 }
 
