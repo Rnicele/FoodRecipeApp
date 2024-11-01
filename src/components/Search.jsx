@@ -11,15 +11,20 @@ export default function Search({ forPage, foodData, setFoodData }) {
 
   useEffect(() => {
     async function fetchFood() {
-      // wait till get the response; we need to use async function when we use await
-      const res = await fetch(`${URL}?query=${query}&apiKey=${apiKey}`);
-      if (!res.ok) {
-        // If the response status is not OK, set error state
-        setHasError(true);
-        console.log(hasError);
-      } else {
-        const data = await res.json();
-        setFoodData(data.results);
+      try {
+        const res = await fetch(`${URL}?query=${query}&apiKey=${apiKey}`);
+        if (!res.ok) {
+          setHasError(true);
+          console.log("API returned an error response.");
+        } else {
+          const data = await res.json();
+          setFoodData(data.results);
+          console.log("THERES NO ERROR IN API");
+          setHasError(false); // Reset error state if the response is successful
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+        setHasError(true); // Set error if there's a network error
       }
     }
     fetchFood();
