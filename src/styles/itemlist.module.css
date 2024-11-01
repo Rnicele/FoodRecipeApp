@@ -1,0 +1,15 @@
+.itemList {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.itemList ul {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  width: 100%;
+  margin-top: 0;
+}

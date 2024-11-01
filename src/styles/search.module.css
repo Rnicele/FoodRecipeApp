@@ -1,0 +1,36 @@
+.searchHeader input {
+  background: url(/src/assets/Search.png) no-repeat scroll 14px 9px;
+  border-radius: 27px;
+  padding: 10px;
+  padding-left: 50px;
+  background-size: 25px;
+  box-shadow: 0 0 6px #0000001a;
+  border: 0;
+  font-size: 20px;
+}
+
+.searchHeader input:focus-visible {
+  outline: none;
+}
+
+@media screen and (min-width: 320px) {
+  /* extra small mobile 320 to 480px */
+  .searchHeader input {
+    width: 80%;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  /* small mobile 481px to 600px*/
+  .searchHeader input {
+    width: auto;
+  }
+}
+@media screen and (min-width: 601px) {
+  /* small tablet 601px to 767px*/
+  .searchHeader input {
+    width: auto;
+    margin-top: 0;
+  }
+}

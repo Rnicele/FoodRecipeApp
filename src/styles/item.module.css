@@ -1,0 +1,31 @@
+.ingredientItem {
+  /* display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row; */
+}
+
+.itemText h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.itemText h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.item {
+  border-radius: 15px;
+  box-shadow: 0 0 6px #0000001a;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.item img {
+  height: 80px;
+}
